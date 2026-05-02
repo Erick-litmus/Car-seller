@@ -98,3 +98,14 @@ export async function deleteVehicle(id: string) {
   revalidatePath("/vehicles");
   revalidatePath("/");
 }
+
+export async function markAsSold(id: string) {
+  await prisma.vehicle.update({
+    where: { id },
+    data: { status: "Sold" },
+  });
+
+  revalidatePath("/admin/vehicles");
+  revalidatePath("/vehicles");
+  revalidatePath("/");
+}

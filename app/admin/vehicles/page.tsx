@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import DeleteVehicleButton from "@/components/admin/DeleteVehicleButton";
+import MarkAsSoldButton from "@/components/admin/MarkAsSoldButton";
 
 export default async function AdminVehicles() {
   const vehicles = await prisma.vehicle.findMany({
@@ -117,6 +118,7 @@ export default async function AdminVehicles() {
                       >
                         <ExternalLink className="w-4 h-4" />
                       </Link>
+                      <MarkAsSoldButton id={vehicle.id} currentStatus={vehicle.status} />
                       <Link 
                         href={`/admin/vehicles/${vehicle.id}/edit`}
                         className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
