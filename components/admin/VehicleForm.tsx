@@ -33,19 +33,19 @@ export default function VehicleForm({ vehicle, isEditing }: VehicleFormProps) {
 
   return (
     <form action={clientAction} className="max-w-4xl mx-auto space-y-10 pb-20">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-serif font-bold text-slate-900 mb-2">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="text-center md:text-left">
+          <h1 className="text-2xl md:text-3xl font-serif font-bold text-slate-900 mb-2">
             {isEditing ? "Edit Vehicle" : "Add New Vehicle"}
           </h1>
-          <p className="text-slate-500">
+          <p className="text-sm text-slate-500">
             {isEditing ? `Updating ${vehicle.make} ${vehicle.model}` : "List a new premium car in the marketplace."}
           </p>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
           <Link 
             href="/admin/vehicles"
-            className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all w-full sm:w-auto"
           >
             <X className="w-4 h-4" />
             Cancel
@@ -53,7 +53,7 @@ export default function VehicleForm({ vehicle, isEditing }: VehicleFormProps) {
           <button 
             type="submit"
             disabled={loading}
-            className="flex items-center gap-2 px-6 py-3 gold-gradient text-white rounded-xl text-sm font-bold shadow-lg shadow-accent/20 hover:opacity-90 transition-all disabled:opacity-50"
+            className="flex items-center justify-center gap-2 px-6 py-3 gold-gradient text-white rounded-xl text-sm font-bold shadow-lg shadow-accent/20 hover:opacity-90 transition-all disabled:opacity-50 w-full sm:w-auto"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             {loading ? "Processing..." : isEditing ? "Save Changes" : "Publish Listing"}
@@ -70,7 +70,7 @@ export default function VehicleForm({ vehicle, isEditing }: VehicleFormProps) {
               <h3 className="font-bold text-slate-900">Basic Information</h3>
             </div>
             
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Make</label>
                 <input 
@@ -93,7 +93,7 @@ export default function VehicleForm({ vehicle, isEditing }: VehicleFormProps) {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Year</label>
                 <input 
@@ -104,7 +104,7 @@ export default function VehicleForm({ vehicle, isEditing }: VehicleFormProps) {
                   required 
                 />
               </div>
-              <div className="space-y-2 col-span-2">
+              <div className="space-y-2 sm:col-span-2">
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Price (KES)</label>
                 <input 
                   name="price" 

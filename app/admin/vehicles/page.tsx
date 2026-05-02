@@ -23,11 +23,11 @@ export default async function AdminVehicles() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h1 className="text-3xl font-serif font-bold text-slate-900 mb-2">Inventory Management</h1>
-          <p className="text-slate-500">View and manage all your vehicle listings.</p>
+          <p className="text-slate-500 text-sm md:text-base">View and manage all your vehicle listings.</p>
         </div>
         <Link 
           href="/admin/vehicles/new"
-          className="flex items-center gap-2 px-6 py-4 gold-gradient text-white rounded-2xl font-bold shadow-lg shadow-accent/20 hover:opacity-90 transition-all w-fit"
+          className="flex items-center justify-center gap-2 px-6 py-4 gold-gradient text-white rounded-2xl font-bold shadow-lg shadow-accent/20 hover:opacity-90 transition-all w-full md:w-fit"
         >
           <Plus className="w-5 h-5" />
           Add Vehicle
@@ -64,11 +64,11 @@ export default async function AdminVehicles() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-100">
-                <th className="px-8 py-6 text-xs font-bold text-slate-500 uppercase tracking-widest">Vehicle</th>
-                <th className="px-8 py-6 text-xs font-bold text-slate-500 uppercase tracking-widest">Pricing</th>
-                <th className="px-8 py-6 text-xs font-bold text-slate-500 uppercase tracking-widest">Details</th>
-                <th className="px-8 py-6 text-xs font-bold text-slate-500 uppercase tracking-widest">Status</th>
-                <th className="px-8 py-6 text-xs font-bold text-slate-500 uppercase tracking-widest text-right">Actions</th>
+                <th className="px-6 md:px-8 py-6 text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest">Vehicle</th>
+                <th className="px-6 md:px-8 py-6 text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest">Pricing</th>
+                <th className="hidden md:table-cell px-8 py-6 text-xs font-bold text-slate-500 uppercase tracking-widest">Details</th>
+                <th className="px-6 md:px-8 py-6 text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest">Status</th>
+                <th className="px-6 md:px-8 py-6 text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -89,11 +89,11 @@ export default async function AdminVehicles() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-8 py-6">
-                    <p className="font-bold text-slate-900">KES {(vehicle.price / 1000000).toFixed(1)}M</p>
-                    <p className="text-xs text-slate-500">{vehicle.mileage.toLocaleString()} km</p>
+                  <td className="px-6 md:px-8 py-6">
+                    <p className="font-bold text-slate-900 text-sm md:text-base">KES {(vehicle.price / 1000000).toFixed(1)}M</p>
+                    <p className="text-[10px] md:text-xs text-slate-500">{vehicle.mileage.toLocaleString()} km</p>
                   </td>
-                  <td className="px-8 py-6">
+                  <td className="hidden md:table-cell px-8 py-6">
                     <p className="text-sm text-slate-700">{vehicle.year} • {vehicle.fuelType}</p>
                     <p className="text-xs text-slate-500">{vehicle.transmission}</p>
                   </td>

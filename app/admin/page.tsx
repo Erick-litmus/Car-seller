@@ -42,16 +42,16 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
         {stats.map((stat) => (
-          <div key={stat.name} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 group hover:border-accent/50 transition-colors">
-            <div className="flex items-center justify-between mb-6">
+          <div key={stat.name} className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 group hover:border-accent/50 transition-colors">
+            <div className="flex items-center justify-between mb-4 md:mb-6">
               <div className="p-3 rounded-2xl bg-slate-50 group-hover:bg-accent/10 transition-colors">
                 <stat.icon className="w-6 h-6 text-slate-400 group-hover:text-accent transition-colors" />
               </div>
             </div>
-            <p className="text-sm font-medium text-slate-500 mb-1">{stat.name}</p>
-            <p className="text-3xl font-bold text-slate-900">{stat.value}</p>
+            <p className="text-xs md:text-sm font-medium text-slate-500 mb-1">{stat.name}</p>
+            <p className="text-2xl md:text-3xl font-bold text-slate-900">{stat.value}</p>
           </div>
         ))}
       </div>
@@ -121,19 +121,19 @@ export default async function AdminDashboard() {
 
       <div className="grid grid-cols-1 gap-10">
         {/* Quick Actions */}
-        <div className="bg-brand-dark rounded-3xl p-10 text-white relative overflow-hidden">
+        <div className="bg-brand-dark rounded-3xl p-6 md:p-10 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent opacity-10 rounded-full blur-3xl -mr-32 -mt-32" />
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="relative z-10 flex flex-col lg:flex-row items-center lg:justify-between gap-8 text-center lg:text-left">
             <div>
-              <h3 className="text-3xl font-serif font-bold mb-4">Grow Your Business</h3>
-              <p className="text-white/60 max-w-md">Add new premium vehicles to your marketplace and start tracking your leads in real-time.</p>
+              <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4">Grow Your Business</h3>
+              <p className="text-white/60 max-w-md text-sm md:text-base">Add new premium vehicles to your marketplace and start tracking your leads in real-time.</p>
             </div>
             <Link 
               href="/admin/vehicles/new"
-              className="inline-flex items-center gap-3 px-10 py-5 gold-gradient text-white rounded-2xl font-bold shadow-2xl shadow-accent/20 hover:scale-[1.05] transition-all"
+              className="w-full lg:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 gold-gradient text-white rounded-2xl font-bold shadow-2xl shadow-accent/20 hover:scale-[1.02] transition-all"
             >
               <PlusCircle className="w-6 h-6" />
-              Add New Vehicle Listing
+              Add New Listing
             </Link>
           </div>
         </div>
