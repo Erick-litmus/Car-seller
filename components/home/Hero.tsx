@@ -49,11 +49,11 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white leading-[1.1] mb-6">
               Experience <span className="text-accent italic">Unrivaled</span> <br />
               Luxury
             </h1>
-            <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed max-w-xl">
+            <p className="text-base md:text-xl text-white/70 mb-10 leading-relaxed max-w-xl">
               Discover a curated collection of premium used cars. Transparent pricing, technical excellence, and a seamless buying journey.
             </p>
 
@@ -79,38 +79,38 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-16 p-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-full flex flex-col md:flex-row items-center gap-2 max-w-4xl"
+            className="mt-12 md:mt-16 p-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl md:rounded-full flex flex-col md:flex-row items-center gap-2 max-w-4xl"
           >
             <div className="flex-1 w-full flex flex-col md:flex-row items-center">
               <div className="flex-1 w-full px-6 py-4 flex items-center gap-3 border-b md:border-b-0 md:border-r border-white/10">
-                <Search className="w-5 h-5 text-accent" />
+                <Search className="w-5 h-5 text-accent shrink-0" />
                 <input
                   type="text"
-                  placeholder="Search by brand or model..."
+                  placeholder="Brand or model..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  className="bg-transparent border-none focus:ring-0 text-white placeholder:text-white/40 w-full outline-none"
+                  className="bg-transparent border-none focus:ring-0 text-white placeholder:text-white/30 w-full outline-none text-sm md:text-base"
                 />
               </div>
               <div className="flex-1 w-full px-6 py-4 flex items-center gap-3 relative">
                 <select 
                   value={bodyType}
                   onChange={(e) => setBodyType(e.target.value)}
-                  className="bg-transparent border-none focus:ring-0 text-white/60 w-full outline-none appearance-none cursor-pointer"
+                  className="bg-transparent border-none focus:ring-0 text-white/60 w-full outline-none appearance-none cursor-pointer text-sm md:text-base"
                 >
-                  <option value="" className="bg-brand-dark">Select Body Type</option>
+                  <option value="" className="bg-brand-dark">Body Type</option>
                   <option value="SUV" className="bg-brand-dark">SUV</option>
                   <option value="Sedan" className="bg-brand-dark">Sedan</option>
                   <option value="Coupe" className="bg-brand-dark">Coupe</option>
                   <option value="Pickup" className="bg-brand-dark">Pickup</option>
                 </select>
-                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
+                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
               </div>
             </div>
             <button 
               onClick={handleSearch}
-              className="w-full md:w-auto px-10 py-4 gold-gradient text-white rounded-xl md:rounded-full font-bold shadow-lg shadow-accent/20 hover:scale-105 transition-all"
+              className="w-full md:w-auto px-10 py-4 gold-gradient text-white rounded-2xl md:rounded-full font-bold shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all"
             >
               Find Car
             </button>

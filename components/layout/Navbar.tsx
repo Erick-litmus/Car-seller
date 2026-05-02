@@ -82,34 +82,68 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-brand-dark border-t border-white/10 shadow-2xl p-6 flex flex-col gap-4 md:hidden"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 bg-brand-dark/98 backdrop-blur-2xl z-[60] flex flex-col p-8 md:hidden"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "flex items-center gap-3 text-lg font-medium p-3 rounded-xl transition-colors",
-                  pathname === link.href
-                    ? "bg-accent/10 text-accent"
-                    : "text-white/80 hover:bg-white/5"
-                )}
-              >
-                <link.icon className="w-5 h-5" />
-                {link.name}
+            <div className="flex justify-between items-center mb-12">
+              <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+                <div className="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center">
+                  <Car className="text-white w-6 h-6" />
+                </div>
+                <span className="text-xl font-bold font-serif text-white">ERICK & MUTUA</span>
               </Link>
-            ))}
-            <Link
-              href="/vehicles"
-              onClick={() => setIsOpen(false)}
-              className="mt-2 w-full py-4 gold-gradient text-white text-center rounded-xl font-bold shadow-lg shadow-accent/20"
-            >
-              Sell Your Car
-            </Link>
+              <button
+                className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white"
+                onClick={() => setIsOpen(false)}
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "flex items-center gap-4 text-2xl font-serif font-bold transition-all",
+                      pathname === link.href ? "text-accent" : "text-white/60"
+                    )}
+                  >
+                    <link.icon className={cn("w-6 h-6", pathname === link.href ? "text-accent" : "text-white/20")} />
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-auto space-y-6">
+              <Link
+                href="/vehicles"
+                onClick={() => setIsOpen(false)}
+                className="block w-full py-5 gold-gradient text-white text-center rounded-2xl font-bold text-lg shadow-xl shadow-accent/20"
+              >
+                Sell Your Car
+              </Link>
+              
+              <div className="flex items-center justify-center gap-8 py-4">
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-white/40" />
+                </div>
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
+                  <Info className="w-5 h-5 text-white/40" />
+                </div>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
