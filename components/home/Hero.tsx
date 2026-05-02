@@ -49,25 +49,25 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white leading-[1.1] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-7xl font-serif font-bold text-white leading-[1.1] mb-6">
               Experience <span className="text-accent italic">Unrivaled</span> <br />
               Luxury
             </h1>
-            <p className="text-base md:text-xl text-white/70 mb-10 leading-relaxed max-w-xl">
+            <p className="text-sm md:text-xl text-white/70 mb-10 leading-relaxed max-w-xl">
               Discover a curated collection of premium used cars. Transparent pricing, technical excellence, and a seamless buying journey.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/vehicles"
-                className="group flex items-center justify-center gap-2 px-8 py-4 gold-gradient text-white rounded-full font-bold text-lg shadow-2xl shadow-accent/20 hover:scale-105 transition-all"
+                className="group flex items-center justify-center gap-2 px-8 py-4 gold-gradient text-white rounded-full font-bold text-base md:text-lg shadow-2xl shadow-accent/20 hover:scale-105 transition-all"
               >
                 Browse Inventory
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md rounded-full font-bold text-lg transition-all"
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md rounded-full font-bold text-base md:text-lg transition-all"
               >
                 Expert Consultancy
               </Link>

@@ -115,11 +115,11 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      "flex items-center gap-4 text-2xl font-serif font-bold transition-all",
+                      "flex items-center gap-4 text-xl font-serif font-bold transition-all",
                       pathname === link.href ? "text-accent" : "text-white/60"
                     )}
                   >
-                    <link.icon className={cn("w-6 h-6", pathname === link.href ? "text-accent" : "text-white/20")} />
+                    <link.icon className={cn("w-5 h-5", pathname === link.href ? "text-accent" : "text-white/20")} />
                     {link.name}
                   </Link>
                 </motion.div>

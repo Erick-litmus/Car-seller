@@ -61,10 +61,10 @@ export default async function VehiclesPage({ searchParams }: PageProps) {
             <div className="w-1 h-1 bg-white/20 rounded-full" />
             <span className="text-accent">Inventory</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">
+          <h1 className="text-3xl md:text-6xl font-serif font-bold text-white mb-6">
             Available Inventory
           </h1>
-          <p className="text-white/60 text-base md:text-lg max-w-xl leading-relaxed">
+          <p className="text-white/60 text-sm md:text-lg max-w-xl leading-relaxed">
             Browse our wide range of premium inspected vehicles. Find the one that matches your style and performance needs.
           </p>
         </div>
