@@ -24,14 +24,14 @@ export default function LoginPage() {
       });
 
       if (res.ok) {
-        router.push("/admin");
-        router.refresh();
+        // Force a hard refresh/redirect to ensure middleware picks up the cookie
+        window.location.href = "/admin";
       } else {
         setError("Invalid credentials. Please try again.");
+        setLoading(false);
       }
     } catch (err) {
       setError("Connection error. Please check your network.");
-    } finally {
       setLoading(false);
     }
   };
