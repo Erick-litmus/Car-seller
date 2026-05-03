@@ -11,7 +11,8 @@ import {
   ExternalLink,
   PlusCircle,
   Menu,
-  X
+  X,
+  Mail
 } from "lucide-react";
 import { logout } from "@/lib/actions/logout";
 import { cn } from "@/lib/utils";
@@ -21,6 +22,7 @@ const adminLinks = [
   { name: "Dashboard", icon: LayoutDashboard, href: "/admin" },
   { name: "Inventory", icon: Car, href: "/admin/vehicles" },
   { name: "Add Vehicle", icon: PlusCircle, href: "/admin/vehicles/new" },
+  { name: "Inquiries", icon: Mail, href: "/admin/inquiries" },
   { name: "Settings", icon: Settings, href: "/admin/settings" },
 ];
 

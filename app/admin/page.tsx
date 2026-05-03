@@ -1,11 +1,12 @@
 import React from "react";
-import { 
-  TrendingUp, 
-  Car, 
-  MessageCircle, 
+import {
+  TrendingUp,
+  Car,
+  MessageCircle,
   CheckCircle,
   Clock,
-  PlusCircle
+  PlusCircle,
+  Mail
 } from "lucide-react";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
@@ -15,11 +16,12 @@ export default async function AdminDashboard() {
   const availableVehicles = await prisma.vehicle.count({ where: { status: "Available" } });
   const soldVehicles = await prisma.vehicle.count({ where: { status: "Sold" } });
   const totalLeads = await prisma.lead.count();
-  
+  const totalInquiries = await prisma.contactInquiry.count();
+
   const stats = [
     { name: "Total Listings", value: totalVehicles, icon: Car, color: "blue" },
     { name: "Available Now", value: availableVehicles, icon: CheckCircle, color: "green" },
-    { name: "Sold Cars", value: soldVehicles, icon: TrendingUp, color: "amber" },
+    { name: "Direct Inquiries", value: totalInquiries, icon: Mail, color: "amber" },
     { name: "WhatsApp Leads", value: totalLeads, icon: MessageCircle, color: "purple" },
   ];
 
@@ -31,6 +33,11 @@ export default async function AdminDashboard() {
   const recentLeads = await prisma.lead.findMany({
     take: 5,
     include: { vehicle: true },
+    orderBy: { createdAt: "desc" },
+  });
+
+  const recentInquiries = await prisma.contactInquiry.findMany({
+    take: 5,
     orderBy: { createdAt: "desc" },
   });
 
@@ -68,9 +75,9 @@ export default async function AdminDashboard() {
               <div key={vehicle.id} className="p-6 flex items-center justify-between hover:bg-slate-50 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-slate-100 overflow-hidden relative">
-                    <img 
-                      src={JSON.parse(vehicle.images as string)[0] || "/hero-car.png"} 
-                      alt="Car" 
+                    <img
+                      src={JSON.parse(vehicle.images as string)[0] || "/hero-car.png"}
+                      alt="Car"
                       className="object-cover w-full h-full"
                     />
                   </div>
@@ -79,9 +86,8 @@ export default async function AdminDashboard() {
                     <p className="text-xs text-slate-500">{vehicle.year} • KES {(vehicle.price / 1000000).toFixed(1)}M</p>
                   </div>
                 </div>
-                <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full ${
-                  vehicle.status === "Available" ? "bg-green-100 text-green-600" : "bg-slate-100 text-slate-500"
-                }`}>
+                <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full ${vehicle.status === "Available" ? "bg-green-100 text-green-600" : "bg-slate-100 text-slate-500"
+                  }`}>
                   {vehicle.status}
                 </span>
               </div>
@@ -128,7 +134,7 @@ export default async function AdminDashboard() {
               <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4">Grow Your Business</h3>
               <p className="text-white/60 max-w-md text-sm md:text-base">Add new premium vehicles to your marketplace and start tracking your leads in real-time.</p>
             </div>
-            <Link 
+            <Link
               href="/admin/vehicles/new"
               className="w-full lg:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 gold-gradient text-white rounded-2xl font-bold shadow-2xl shadow-accent/20 hover:scale-[1.02] transition-all"
             >

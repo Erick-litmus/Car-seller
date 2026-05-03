@@ -11,6 +11,18 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "pin.it",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.pinimg.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "images.unsplash.com",
         port: "",
         pathname: "/**",
