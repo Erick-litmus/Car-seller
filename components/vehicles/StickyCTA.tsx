@@ -52,7 +52,7 @@ export default function StickyCTA({ vehicleId, make, model, price, whatsappUrl }
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackLead(vehicleId, "WhatsApp")}
-              className="flex items-center gap-2 px-6 py-3 gold-gradient text-white rounded-xl font-bold shadow-lg shadow-accent/20 hover:scale-105 transition-all whitespace-nowrap"
+              className="flex items-center gap-2 px-6 py-3 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-xl font-bold shadow-lg shadow-[#25D366]/20 hover:scale-105 transition-all whitespace-nowrap"
             >
               <MessageCircle className="w-5 h-5" />
               <span className="hidden sm:inline">Inquire Now</span>

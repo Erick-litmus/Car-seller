@@ -68,7 +68,7 @@ export default function ContactPage() {
                   href="https://wa.me/254706546644"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-700 transition"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-lg font-semibold shadow-lg shadow-[#25D366]/20 transition"
                 >
                   <MessageCircle className="w-5 h-5" />
                   Chat on WhatsApp

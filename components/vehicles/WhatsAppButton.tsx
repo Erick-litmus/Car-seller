@@ -21,7 +21,7 @@ export default function WhatsAppButton({ vehicleId, whatsappUrl }: WhatsAppButto
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className="w-full py-4 gold-gradient text-white rounded-xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all"
+      className="w-full py-4 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-[#25D366]/20 hover:scale-[1.02] transition-all"
     >
       <MessageCircle className="w-5 h-5" />
       Inquire via WhatsApp
