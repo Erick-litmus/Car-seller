@@ -35,8 +35,8 @@ export default function Hero() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         >
-          {/* Using a high-quality free stock video for the luxury feel. */}
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-driving-in-a-dark-tunnel-with-a-luxury-car-4334-large.mp4" type="video/mp4" />
+          {/* Using the local downloaded YouTube video for the luxury feel. */}
+          <source src="/hero-video.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/60 to-brand-dark/40" />
       </div>
