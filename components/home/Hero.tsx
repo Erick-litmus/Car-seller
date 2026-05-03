@@ -51,61 +51,63 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto px-6 relative z-10 w-full flex-grow flex items-center">
-        <div className="max-w-3xl">
+        {/* Left column: text + buttons + search — takes only ~half the width */}
+        <div className="w-full lg:w-1/2">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white leading-[1.1] mb-6">
-              Experience <span className="text-accent italic">Unrivaled</span> <br />
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white leading-[1.1] mb-4">
+              Experience <span className="text-accent italic">Unrivaled</span>{" "}
               Luxury
             </h1>
-            <p className="text-sm md:text-lg text-white/70 mb-10 leading-relaxed max-w-xl">
+            <p className="text-sm md:text-base text-white/70 mb-8 leading-relaxed max-w-md">
               Discover a curated collection of premium used cars. Transparent pricing, technical excellence, and a seamless buying journey.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* Buttons row */}
+            <div className="flex flex-row gap-3 mb-8 flex-wrap">
               <Link
                 href="/vehicles"
-                className="group flex items-center justify-center gap-2 px-8 py-4 gold-gradient text-white rounded-full font-bold text-sm md:text-base shadow-2xl shadow-accent/20 hover:scale-105 transition-all"
+                className="group flex items-center gap-2 px-6 py-3 gold-gradient text-white rounded-full font-bold text-sm shadow-2xl shadow-accent/20 hover:scale-105 transition-all"
               >
                 Browse Inventory
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md rounded-full font-bold text-sm md:text-base transition-all"
+                className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md rounded-full font-bold text-sm transition-all"
               >
                 Expert Consultancy
               </Link>
             </div>
           </motion.div>
 
-          {/* Quick Search Bar */}
+          {/* Compact Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-12 md:mt-16 p-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl md:rounded-full flex flex-col md:flex-row items-center gap-2 max-w-4xl"
+            className="p-1.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full flex flex-row items-center gap-1 max-w-lg"
           >
-            <div className="flex-1 w-full flex flex-col md:flex-row items-center">
-              <div className="flex-1 w-full px-6 py-4 flex items-center gap-3 border-b md:border-b-0 md:border-r border-white/10">
-                <Search className="w-5 h-5 text-accent shrink-0" />
+            <div className="flex-1 flex items-center">
+              <div className="flex-1 px-4 py-2.5 flex items-center gap-2 border-r border-white/10">
+                <Search className="w-4 h-4 text-accent shrink-0" />
                 <input
                   type="text"
                   placeholder="Brand or model..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  className="bg-transparent border-none focus:ring-0 text-white placeholder:text-white/30 w-full outline-none text-xs md:text-sm"
+                  className="bg-transparent border-none focus:ring-0 text-white placeholder:text-white/30 w-full outline-none text-xs"
                 />
               </div>
-              <div className="flex-1 w-full px-6 py-4 flex items-center gap-3 relative">
+              <div className="px-4 py-2.5 flex items-center gap-2 relative">
                 <select
                   value={bodyType}
                   onChange={(e) => setBodyType(e.target.value)}
-                  className="bg-transparent border-none focus:ring-0 text-white/60 w-full outline-none appearance-none cursor-pointer text-xs md:text-sm"
+                  className="bg-transparent border-none focus:ring-0 text-white/60 outline-none appearance-none cursor-pointer text-xs pr-5"
                 >
                   <option value="" className="bg-brand-dark">Body Type</option>
                   <option value="SUV" className="bg-brand-dark">SUV</option>
@@ -113,12 +115,12 @@ export default function Hero() {
                   <option value="Coupe" className="bg-brand-dark">Coupe</option>
                   <option value="Pickup" className="bg-brand-dark">Pickup</option>
                 </select>
-                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
+                <ChevronDown className="absolute right-1 top-1/2 -translate-y-1/2 w-3 h-3 text-white/30 pointer-events-none" />
               </div>
             </div>
             <button
               onClick={handleSearch}
-              className="w-full md:w-auto px-10 py-4 gold-gradient text-white rounded-2xl md:rounded-full font-bold shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all"
+              className="px-6 py-2.5 gold-gradient text-white rounded-full font-bold text-sm shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all whitespace-nowrap"
             >
               Find Car
             </button>
