@@ -27,18 +27,27 @@ export default function Hero() {
   return (
     <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden bg-brand-dark pt-20">
       {/* Video Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-brand-dark">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          className="absolute inset-0 w-full h-full object-cover opacity-40 scale-105 blur-[2px] contrast-125 saturate-50"
         >
           {/* Using the local downloaded YouTube video for the luxury feel. */}
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/60 to-brand-dark/40" />
+        
+        {/* Cinematic Overlays */}
+        {/* 1. Vignette effect to focus attention on center/text */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-brand-dark/20 to-brand-dark" />
+        
+        {/* 2. Left-to-right gradient to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/70 to-transparent" />
+        
+        {/* 3. Bottom gradient to blend smoothly into the next section */}
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10 w-full flex-grow flex items-center">
