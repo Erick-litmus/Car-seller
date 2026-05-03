@@ -19,7 +19,7 @@ interface Vehicle {
 export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
   return (
     <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-black/5 group">
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <Link href={`/vehicles/${vehicle.id}`} className="block relative aspect-[16/10] overflow-hidden">
         <Image
           src={vehicle.image}
           alt={`${vehicle.make} ${vehicle.model}`}
@@ -31,10 +31,10 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
         <div className={`absolute top-4 left-4 ${vehicle.status === "Available" ? "bg-brand-dark/80" : "bg-red-500/80"} backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full`}>
           {vehicle.status}
         </div>
-        <button className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent transition-colors">
+        <button className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent transition-colors" onClick={(e) => e.preventDefault()}>
           <Heart className="w-5 h-5" />
         </button>
-      </div>
+      </Link>
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
           <div>
