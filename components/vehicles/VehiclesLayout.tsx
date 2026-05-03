@@ -21,6 +21,15 @@ interface Vehicle {
 
 export default function VehiclesLayout({ vehicles }: { vehicles: Vehicle[] }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [sortBy, setSortBy] = useState("Latest Arrivals");
+
+  const sortedVehicles = [...vehicles].sort((a, b) => {
+    if (sortBy === "Price: Low to High") return a.price - b.price;
+    if (sortBy === "Price: High to Low") return b.price - a.price;
+    if (sortBy === "Year: Newest First") return b.year - a.year;
+    // "Latest Arrivals" — keep original order (already ordered by createdAt desc from server)
+    return 0;
+  });
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
@@ -45,11 +54,15 @@ export default function VehiclesLayout({ vehicles }: { vehicles: Vehicle[] }) {
         <div className="flex-1">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
             <p className="text-muted font-medium">
-              Showing <span className="text-brand-dark font-bold">{vehicles.length}</span> premium vehicles
+              Showing <span className="text-brand-dark font-bold">{sortedVehicles.length}</span> premium vehicles
             </p>
             <div className="flex items-center gap-4 w-full sm:w-auto">
               <span className="text-sm text-muted hidden sm:block whitespace-nowrap">Sort by:</span>
-              <select className="w-full sm:w-auto bg-white border border-black/5 rounded-xl px-5 py-3 text-sm font-bold text-brand-dark shadow-sm outline-none cursor-pointer hover:border-accent/50 transition-colors">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="w-full sm:w-auto bg-white border border-black/5 rounded-xl px-5 py-3 text-sm font-bold text-brand-dark shadow-sm outline-none cursor-pointer hover:border-accent/50 transition-colors"
+              >
                 <option>Latest Arrivals</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>
@@ -58,9 +71,9 @@ export default function VehiclesLayout({ vehicles }: { vehicles: Vehicle[] }) {
             </div>
           </div>
 
-          {vehicles.length > 0 ? (
+          {sortedVehicles.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
-              {vehicles.map((vehicle) => (
+              {sortedVehicles.map((vehicle) => (
                 <VehicleCard key={vehicle.id} vehicle={vehicle} />
               ))}
             </div>
