@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
+
 import { motion } from "framer-motion";
-import { Search, ArrowRight, ChevronDown } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 // Luxury car brands for the marquee
@@ -66,22 +66,7 @@ export default function Hero() {
               Discover a curated collection of premium used cars. Transparent pricing, technical excellence, and a seamless buying journey.
             </p>
 
-            {/* Buttons row */}
-            <div className="flex flex-row gap-3 mb-8 flex-wrap">
-              <Link
-                href="/vehicles"
-                className="group flex items-center gap-2 px-6 py-3 gold-gradient text-white rounded-full font-bold text-sm shadow-2xl shadow-accent/20 hover:scale-105 transition-all"
-              >
-                Browse Inventory
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/contact"
-                className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md rounded-full font-bold text-sm transition-all"
-              >
-                Expert Consultancy
-              </Link>
-            </div>
+
           </motion.div>
 
           {/* Compact Search Bar */}
