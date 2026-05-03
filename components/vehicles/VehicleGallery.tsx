@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Share2, Heart, Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function VehicleGallery({ images }: { images: string[] }) {
@@ -42,24 +42,12 @@ export default function VehicleGallery({ images }: { images: string[] }) {
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
           
-          <div className="absolute top-6 right-6 flex gap-3">
+          <div className="absolute top-6 right-6">
             <button 
               onClick={(e) => { e.stopPropagation(); setIsFullScreen(true); }}
               className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-colors shadow-lg"
             >
               <Maximize2 className="w-5 h-5" />
-            </button>
-            <button 
-              onClick={(e) => e.stopPropagation()}
-              className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-colors shadow-lg"
-            >
-              <Share2 className="w-5 h-5" />
-            </button>
-            <button 
-              onClick={(e) => e.stopPropagation()}
-              className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent transition-colors shadow-lg"
-            >
-              <Heart className="w-5 h-5" />
             </button>
           </div>
         </div>
