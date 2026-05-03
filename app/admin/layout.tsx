@@ -129,9 +129,19 @@ export default function AdminLayout({
             >
               <Menu className="w-6 h-6" />
             </button>
-            <h2 className="text-lg font-bold text-slate-800 truncate">
-              {adminLinks.find(l => l.href === pathname)?.name || "Admin Panel"}
-            </h2>
+          <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
+              <Link href="/" className="hover:text-accent transition-colors font-bold text-slate-800">
+                Home
+              </Link>
+              {pathname !== "/" && (
+                <>
+                  <span className="text-accent font-bold">•</span>
+                  <span className="text-slate-800 font-bold truncate">
+                    {adminLinks.find(l => l.href === pathname)?.name || "Admin Panel"}
+                  </span>
+                </>
+              )}
+            </div>
           </div>
           
           <div className="flex items-center gap-4">
