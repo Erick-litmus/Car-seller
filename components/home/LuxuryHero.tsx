@@ -1,0 +1,152 @@
+"use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Search, ArrowRight, ChevronDown } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+// Luxury car brands for the marquee
+const BRANDS = [
+  "Toyota", "Mercedes-Benz", "BMW", "Audi", "Range Rover",
+  "Porsche", "Lexus", "Bentley", "Rolls-Royce", "Jaguar"
+];
+
+export default function LuxuryHero() {
+  const router = useRouter();
+  const [query, setQuery] = useState("");
+  const [bodyType, setBodyType] = useState("");
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (query) params.set("q", query);
+    if (bodyType) params.set("bodyType", bodyType);
+    router.push(`/vehicles?${params.toString()}`);
+  };
+
+  return (
+    <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden bg-brand-dark pt-20">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0 bg-brand-dark">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-40 scale-105 blur-[2px] contrast-125 saturate-50"
+        >
+          {/* Using the local downloaded YouTube video for the luxury feel. */}
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Cinematic Overlays */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-brand-dark/20 to-brand-dark" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10 w-full flex-grow flex items-center">
+        <div className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white leading-[1.2] mb-6">
+              Experience <span className="text-accent italic">Unrivaled</span> <br />
+              <span className="inline-flex items-center gap-3 md:gap-4 mt-2">
+                <img 
+                  src="/uploads/09618fbb6b5fb26dc0b16891010fe7fe.jpg" 
+                  alt="Luxury" 
+                  className="w-24 h-10 md:w-32 md:h-14 object-cover rounded-full border border-white/20 shadow-lg shadow-accent/20"
+                />
+                <span>Luxury</span>
+              </span>
+            </h1>
+            <p className="text-sm md:text-lg text-white/70 mb-10 leading-relaxed max-w-xl">
+              Discover a curated collection of premium used cars. Transparent pricing, technical excellence, and a seamless buying journey.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="/vehicles"
+                className="group flex items-center justify-center gap-2 px-8 py-4 gold-gradient text-white rounded-full font-bold text-sm md:text-base shadow-2xl shadow-accent/20 hover:scale-105 transition-all"
+              >
+                Browse Inventory
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/contact"
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md rounded-full font-bold text-sm md:text-base transition-all"
+              >
+                Expert Consultancy
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Quick Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-12 md:mt-16 p-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl md:rounded-full flex flex-col md:flex-row items-center gap-2 max-w-4xl"
+          >
+            <div className="flex-1 w-full flex flex-col md:flex-row items-center">
+              <div className="flex-1 w-full px-6 py-4 flex items-center gap-3 border-b md:border-b-0 md:border-r border-white/10">
+                <Search className="w-5 h-5 text-accent shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Brand or model..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                  className="bg-transparent border-none focus:ring-0 text-white placeholder:text-white/30 w-full outline-none text-xs md:text-sm"
+                />
+              </div>
+              <div className="flex-1 w-full px-6 py-4 flex items-center gap-3 relative">
+                <select
+                  value={bodyType}
+                  onChange={(e) => setBodyType(e.target.value)}
+                  className="bg-transparent border-none focus:ring-0 text-white/60 w-full outline-none appearance-none cursor-pointer text-xs md:text-sm"
+                >
+                  <option value="" className="bg-brand-dark">Body Type</option>
+                  <option value="SUV" className="bg-brand-dark">SUV</option>
+                  <option value="Sedan" className="bg-brand-dark">Sedan</option>
+                  <option value="Coupe" className="bg-brand-dark">Coupe</option>
+                  <option value="Pickup" className="bg-brand-dark">Pickup</option>
+                </select>
+                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
+              </div>
+            </div>
+            <button
+              onClick={handleSearch}
+              className="w-full md:w-auto px-10 py-4 gold-gradient text-white rounded-2xl md:rounded-full font-bold shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all"
+            >
+              Find Car
+            </button>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Infinite Scrolling Marquee */}
+      <div className="relative z-10 w-full bg-black/40 backdrop-blur-md border-y border-white/5 py-4 mt-16 overflow-hidden">
+        <div className="flex w-[200%] animate-marquee">
+          <div className="flex w-1/2 justify-around items-center">
+            {BRANDS.map((brand, i) => (
+              <span key={i} className="text-white/40 text-sm md:text-xl font-serif font-bold uppercase tracking-widest px-4 md:px-8 shrink-0">
+                {brand}
+              </span>
+            ))}
+          </div>
+          <div className="flex w-1/2 justify-around items-center">
+            {BRANDS.map((brand, i) => (
+              <span key={`dup-${i}`} className="text-white/40 text-sm md:text-xl font-serif font-bold uppercase tracking-widest px-4 md:px-8 shrink-0">
+                {brand}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
