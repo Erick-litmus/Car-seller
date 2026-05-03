@@ -59,9 +59,9 @@ export default async function VehicleDetailPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-muted text-xs mb-8 uppercase tracking-widest font-medium">
-            <span>Home</span>
+            <a href="/" className="hover:text-accent transition-colors">Home</a>
             <ChevronRight className="w-4 h-4" />
-            <span>Inventory</span>
+            <a href="/vehicles" className="hover:text-accent transition-colors">Inventory</a>
             <ChevronRight className="w-4 h-4" />
             <span className="text-brand-dark">{vehicle.make} {vehicle.model}</span>
           </div>
