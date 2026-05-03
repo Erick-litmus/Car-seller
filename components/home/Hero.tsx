@@ -57,9 +57,16 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white leading-[1.1] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white leading-[1.2] mb-6">
               Experience <span className="text-accent italic">Unrivaled</span> <br />
-              Luxury
+              <span className="inline-flex items-center gap-3 md:gap-4 mt-2">
+                <img 
+                  src="/uploads/09618fbb6b5fb26dc0b16891010fe7fe.jpg" 
+                  alt="Luxury" 
+                  className="w-24 h-10 md:w-32 md:h-14 object-cover rounded-full border border-white/20 shadow-lg shadow-accent/20"
+                />
+                <span>Luxury</span>
+              </span>
             </h1>
             <p className="text-sm md:text-lg text-white/70 mb-10 leading-relaxed max-w-xl">
               Discover a curated collection of premium used cars. Transparent pricing, technical excellence, and a seamless buying journey.
