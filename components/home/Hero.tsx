@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 // Luxury car brands for the marquee
 const BRANDS = [
-  "Toyota", "Mercedes-Benz", "BMW", "Audi", "Range Rover", 
+  "Toyota", "Mercedes-Benz", "BMW", "Audi", "Range Rover",
   "Porsche", "Lexus", "Bentley", "Rolls-Royce", "Jaguar"
 ];
 
@@ -37,7 +37,7 @@ export default function Hero() {
         >
           {/* We use a high-quality free stock video for the luxury feel. 
               The user can replace this with a local /hero-video.mp4 later. */}
-          <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-driving-in-a-dark-tunnel-with-a-luxury-car-4334-large.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/60 to-brand-dark/40" />
       </div>
@@ -49,25 +49,25 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-7xl font-serif font-bold text-white leading-[1.1] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white leading-[1.1] mb-6">
               Experience <span className="text-accent italic">Unrivaled</span> <br />
               Luxury
             </h1>
-            <p className="text-sm md:text-xl text-white/70 mb-10 leading-relaxed max-w-xl">
+            <p className="text-sm md:text-lg text-white/70 mb-10 leading-relaxed max-w-xl">
               Discover a curated collection of premium used cars. Transparent pricing, technical excellence, and a seamless buying journey.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/vehicles"
-                className="group flex items-center justify-center gap-2 px-8 py-4 gold-gradient text-white rounded-full font-bold text-base md:text-lg shadow-2xl shadow-accent/20 hover:scale-105 transition-all"
+                className="group flex items-center justify-center gap-2 px-8 py-4 gold-gradient text-white rounded-full font-bold text-sm md:text-base shadow-2xl shadow-accent/20 hover:scale-105 transition-all"
               >
                 Browse Inventory
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md rounded-full font-bold text-base md:text-lg transition-all"
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md rounded-full font-bold text-sm md:text-base transition-all"
               >
                 Expert Consultancy
               </Link>
@@ -90,14 +90,14 @@ export default function Hero() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  className="bg-transparent border-none focus:ring-0 text-white placeholder:text-white/30 w-full outline-none text-sm md:text-base"
+                  className="bg-transparent border-none focus:ring-0 text-white placeholder:text-white/30 w-full outline-none text-xs md:text-sm"
                 />
               </div>
               <div className="flex-1 w-full px-6 py-4 flex items-center gap-3 relative">
-                <select 
+                <select
                   value={bodyType}
                   onChange={(e) => setBodyType(e.target.value)}
-                  className="bg-transparent border-none focus:ring-0 text-white/60 w-full outline-none appearance-none cursor-pointer text-sm md:text-base"
+                  className="bg-transparent border-none focus:ring-0 text-white/60 w-full outline-none appearance-none cursor-pointer text-xs md:text-sm"
                 >
                   <option value="" className="bg-brand-dark">Body Type</option>
                   <option value="SUV" className="bg-brand-dark">SUV</option>
@@ -108,7 +108,7 @@ export default function Hero() {
                 <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
               </div>
             </div>
-            <button 
+            <button
               onClick={handleSearch}
               className="w-full md:w-auto px-10 py-4 gold-gradient text-white rounded-2xl md:rounded-full font-bold shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all"
             >
@@ -123,14 +123,14 @@ export default function Hero() {
         <div className="flex w-[200%] animate-marquee">
           <div className="flex w-1/2 justify-around items-center">
             {BRANDS.map((brand, i) => (
-              <span key={i} className="text-white/40 text-xl font-serif font-bold uppercase tracking-widest px-8">
+              <span key={i} className="text-white/40 text-sm md:text-xl font-serif font-bold uppercase tracking-widest px-4 md:px-8 shrink-0">
                 {brand}
               </span>
             ))}
           </div>
           <div className="flex w-1/2 justify-around items-center">
             {BRANDS.map((brand, i) => (
-              <span key={`dup-${i}`} className="text-white/40 text-xl font-serif font-bold uppercase tracking-widest px-8">
+              <span key={`dup-${i}`} className="text-white/40 text-sm md:text-xl font-serif font-bold uppercase tracking-widest px-4 md:px-8 shrink-0">
                 {brand}
               </span>
             ))}

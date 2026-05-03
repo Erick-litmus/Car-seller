@@ -1,7 +1,8 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/home/Hero";
-import { ArrowRight, ShieldCheck, Zap, Heart, Star, Users, Award, MapPin } from "lucide-react";
+import MovingCarsSection from "@/components/home/MovingCarsSection";
+import { ArrowRight, ShieldCheck, Zap, Heart, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
@@ -24,32 +25,13 @@ export default async function Home() {
       <Navbar />
       <Hero />
 
-      {/* Impact Stats */}
-      <section className="relative z-20 -mt-12 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-          {[
-            { label: "Happy Clients", value: "500+", icon: Users },
-            { label: "Premium Cars", value: "150+", icon: Zap },
-            { label: "Years Experience", value: "12+", icon: Award },
-            { label: "Global Reach", value: "10+", icon: MapPin },
-          ].map((stat, i) => (
-            <div key={i} className="bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[32px] border border-white shadow-xl flex flex-col items-center text-center group hover:scale-105 transition-all duration-500">
-              <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
-                <stat.icon className="w-6 h-6 text-slate-400 group-hover:text-accent transition-colors" />
-              </div>
-              <p className="text-2xl md:text-3xl font-bold text-brand-dark mb-1">{stat.value}</p>
-              <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* Luxury Categories */}
       <section className="py-24 md:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 md:mb-20">
             <span className="text-accent font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4 block">Tailored Selections</span>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-6">Explore By Category</h2>
+            <h2 className="text-2xl md:text-4xl font-serif font-bold text-brand-dark mb-6">Explore By Category</h2>
             <div className="h-1 w-20 gold-gradient mx-auto rounded-full" />
           </div>
 
@@ -65,7 +47,7 @@ export default async function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-8 left-8">
                   <p className="text-white/60 text-xs font-bold mb-1">{cat.count} Listings</p>
-                  <h4 className="text-2xl font-serif font-bold text-white">{cat.name}</h4>
+                  <h4 className="text-xl font-serif font-bold text-white">{cat.name}</h4>
                 </div>
                 <div className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
                   <ArrowRight className="w-6 h-6 text-white" />
@@ -82,7 +64,7 @@ export default async function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div>
               <span className="text-accent font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4 block">Hand-Picked</span>
-              <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">
+              <h2 className="text-2xl md:text-4xl font-serif font-bold text-brand-dark mb-4">
                 Featured Collection
               </h2>
               <p className="text-muted text-sm md:text-base max-w-xl">
@@ -121,10 +103,10 @@ export default async function Home() {
                 <div className="p-8">
                   <div className="flex justify-between items-start mb-6">
                     <div>
-                      <h3 className="text-xl font-bold text-brand-dark mb-1">{vehicle.make} {vehicle.model}</h3>
+                      <h3 className="text-lg font-bold text-brand-dark mb-1">{vehicle.make} {vehicle.model}</h3>
                       <p className="text-slate-400 text-xs font-medium uppercase tracking-wider">{vehicle.year} • {vehicle.mileage.toLocaleString()} km</p>
                     </div>
-                    <p className="text-xl font-bold text-accent">KES {(vehicle.price / 1000000).toFixed(1)}M</p>
+                    <p className="text-lg font-bold text-accent">KES {(vehicle.price / 1000000).toFixed(1)}M</p>
                   </div>
                   <div className="grid grid-cols-2 gap-4 py-6 border-y border-black/5 mb-8">
                     <div className="flex items-center gap-3 text-xs font-bold text-brand-dark/60 uppercase tracking-widest">
@@ -154,14 +136,20 @@ export default async function Home() {
       <section className="py-24 md:py-40">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] rounded-[60px] overflow-hidden shadow-2xl group">
-            <Image
-              src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80"
-              alt="Luxury Car Interior"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-1000"
-            />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+            >
+              <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-driving-in-a-dark-tunnel-with-a-luxury-car-4334-large.mp4"
+                type="video/mp4"
+              />
+            </video>
             <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent" />
-            <div className="absolute bottom-12 left-12 right-12 p-8 bg-white/10 backdrop-blur-xl rounded-[40px] border border-white/20">
+            <div className="absolute bottom-12 left-12 right-12 p-8 bg-black/30 backdrop-blur-md rounded-[40px] border border-white/10">
               <Star className="text-accent w-8 h-8 mb-4 fill-accent" />
               <p className="text-white text-xl font-serif italic italic leading-relaxed">
                 "Our mission is to provide more than just a car; we provide a lifestyle of technical perfection and unrivaled service."
@@ -173,7 +161,7 @@ export default async function Home() {
             <span className="text-accent font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4 block">
               The Gold Standard
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-10 leading-tight">
+            <h2 className="text-2xl md:text-4xl font-serif font-bold text-brand-dark mb-10 leading-tight">
               Why We Are The <br />
               Preferred Choice
             </h2>
@@ -200,7 +188,7 @@ export default async function Home() {
                     <feature.icon className="text-slate-400 w-7 h-7 group-hover:text-white transition-colors" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-brand-dark mb-3">
+                    <h4 className="text-lg font-bold text-brand-dark mb-3">
                       {feature.title}
                     </h4>
                     <p className="text-muted leading-relaxed text-sm md:text-base">
@@ -219,9 +207,9 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto bg-brand-dark rounded-[60px] md:rounded-[100px] p-12 md:p-24 text-center relative overflow-hidden group">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-20 grayscale group-hover:scale-105 transition-transform duration-1000" />
           <div className="absolute inset-0 bg-brand-dark/80" />
-          
+
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-6xl font-serif font-bold text-white mb-8">Ready to Elevate <br /> Your Driving Experience?</h2>
+            <h2 className="text-2xl md:text-5xl font-serif font-bold text-white mb-8">Ready to Elevate <br /> Your Driving Experience?</h2>
             <p className="text-white/60 text-sm md:text-lg max-w-2xl mx-auto mb-12">
               Join the hundreds of satisfied clients who have found their dream vehicle with Erick & Mutua. Your journey to unrivaled luxury begins here.
             </p>

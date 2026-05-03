@@ -16,7 +16,9 @@ async function main() {
       engineSize: "3.0L",
       location: "Nairobi",
       status: "Available",
-      images: ["/hero-car.png"],
+      images: [
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80"
+      ],
       features: ["Leather Seats", "Sunroof", "Navigation System"],
     },
     {
@@ -31,7 +33,9 @@ async function main() {
       engineSize: "2.0L",
       location: "Mombasa",
       status: "Available",
-      images: ["/hero-car.png"],
+      images: [
+        "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80"
+      ],
       features: ["Premium Sound System", "Blind Spot Monitor"],
     },
     {
@@ -46,7 +50,9 @@ async function main() {
       engineSize: "3.3L",
       location: "Nairobi",
       status: "Available",
-      images: ["/hero-car.png"],
+      images: [
+        "https://images.unsplash.com/photo-1626668893632-6f3a4466d22f?auto=format&fit=crop&w=800&q=80"
+      ],
       features: ["4WD", "Heated Seats", "Adaptive Cruise Control"],
     },
     {
@@ -61,7 +67,9 @@ async function main() {
       engineSize: "3.0L",
       location: "Nairobi",
       status: "Available",
-      images: ["/hero-car.png"],
+      images: [
+        "https://images.unsplash.com/photo-1555215695-3004980ad54c?auto=format&fit=crop&w=800&q=80"
+      ],
       features: ["Panoramic Roof", "Parking Assistant"],
     },
     {
@@ -76,7 +84,9 @@ async function main() {
       engineSize: "3.0L",
       location: "Nairobi",
       status: "Available",
-      images: ["/hero-car.png"],
+      images: [
+        "https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&w=800&q=80"
+      ],
       features: ["Virtual Cockpit", "Third Row Seating"],
     },
     {
@@ -91,26 +101,36 @@ async function main() {
       engineSize: "5.7L",
       location: "Nairobi",
       status: "Available",
-      images: ["/hero-car.png"],
+      images: [
+        "https://images.unsplash.com/photo-1609521262040-572765275640?auto=format&fit=crop&w=800&q=80"
+      ],
       features: ["Mark Levinson Audio", "Luxury Package"],
-    },
+    }
   ];
 
-  console.log("Cleaning up database...");
-  await prisma.vehicle.deleteMany();
+  console.log("Starting database seed transaction with fresh image URLs...");
 
-  console.log("Seeding vehicles...");
-  for (const vehicle of vehicles) {
-    await prisma.vehicle.create({
-      data: {
-        ...vehicle,
-        images: JSON.stringify(vehicle.images),
-        features: JSON.stringify(vehicle.features),
-      },
+  try {
+    await prisma.$transaction(async (tx) => {
+      console.log("Cleaning up existing vehicles...");
+      await tx.vehicle.deleteMany();
+
+      console.log(`Seeding ${vehicles.length} vehicles...`);
+      for (const vehicle of vehicles) {
+        await tx.vehicle.create({
+          data: {
+            ...vehicle,
+            images: JSON.stringify(vehicle.images),
+            features: JSON.stringify(vehicle.features),
+          },
+        });
+      }
     });
+    console.log("Seeding complete! Database images have been refreshed.");
+  } catch (error) {
+    console.error("Error during seeding:", error);
+    throw error;
   }
-
-  console.log("Seeding complete!");
 }
 
 main()

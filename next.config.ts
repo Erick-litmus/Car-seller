@@ -5,33 +5,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "kai-and-karo.ams3.cdn.digitaloceanspaces.com",
-        port: "",
-        pathname: "/**",
+        hostname: "**",
       },
       {
-        protocol: "https",
-        hostname: "pin.it",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "*.pinimg.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "*.digitaloceanspaces.com",
-        port: "",
-        pathname: "/**",
+        protocol: "http",
+        hostname: "**",
       },
     ],
   },

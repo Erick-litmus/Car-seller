@@ -3,6 +3,84 @@
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import fs from "fs/promises";
+import path from "path";
+import crypto from "crypto";
+
+async function processImageUrls(urls: string[]) {
+  const processedUrls = [];
+  for (const url of urls) {
+    if (!url.startsWith("http")) {
+      processedUrls.push(url);
+      continue;
+    }
+    try {
+      let finalImageUrl = url;
+      let res = await fetch(finalImageUrl);
+      if (!res.ok) {
+        processedUrls.push(url);
+        continue;
+      }
+      
+      let contentType = res.headers.get("content-type");
+
+      // If the URL is an HTML page, try to scrape the og:image
+      if (contentType && contentType.includes("text/html")) {
+        const html = await res.text();
+        let scrapedUrl = null;
+        
+        const ogImageMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i) || 
+                             html.match(/<meta[^>]*content=["']([^"']+)["'][^>]*property=["']og:image["']/i) ||
+                             html.match(/<meta[^>]*name=["']twitter:image["'][^>]*content=["']([^"']+)["']/i);
+                             
+        if (ogImageMatch && ogImageMatch[1]) {
+          scrapedUrl = ogImageMatch[1];
+        } else {
+          const anyImageMatch = html.match(/https:\/\/[^"'\s>\\\]]+\.(?:jpg|jpeg|png|webp)/i);
+          if (anyImageMatch && anyImageMatch[0]) {
+            scrapedUrl = anyImageMatch[0];
+          }
+        }
+
+        if (scrapedUrl) {
+          finalImageUrl = scrapedUrl;
+          // Fetch the actual scraped image
+          res = await fetch(finalImageUrl);
+          if (!res.ok) {
+            processedUrls.push(url);
+            continue;
+          }
+          contentType = res.headers.get("content-type");
+        } else {
+          processedUrls.push(url);
+          continue;
+        }
+      }
+
+      if (!contentType || !contentType.startsWith("image/")) {
+        processedUrls.push(finalImageUrl);
+        continue;
+      }
+
+      const buffer = Buffer.from(await res.arrayBuffer());
+      const uploadsDir = path.join(process.cwd(), "public", "uploads");
+      await fs.mkdir(uploadsDir, { recursive: true });
+
+      let ext = contentType.split("/")[1]?.split(";")[0] || "jpg";
+      if (ext === "jpeg") ext = "jpg";
+      
+      const filename = `${crypto.randomBytes(16).toString("hex")}.${ext}`;
+      const filePath = path.join(uploadsDir, filename);
+      
+      await fs.writeFile(filePath, buffer);
+      processedUrls.push(`/uploads/${filename}`);
+    } catch (e) {
+      console.error("Error downloading image:", e);
+      processedUrls.push(url);
+    }
+  }
+  return processedUrls;
+}
 
 export async function createVehicle(formData: FormData) {
   const make = formData.get("make") as string;
@@ -21,6 +99,8 @@ export async function createVehicle(formData: FormData) {
   const images = imagesStr.split(",").map(s => s.trim()).filter(s => s !== "");
   const features = featuresStr.split(",").map(s => s.trim()).filter(s => s !== "");
 
+  const processedImages = await processImageUrls(images);
+
   await prisma.vehicle.create({
     data: {
       make,
@@ -33,7 +113,7 @@ export async function createVehicle(formData: FormData) {
       bodyType,
       engineSize,
       location,
-      images: JSON.stringify(images),
+      images: JSON.stringify(processedImages),
       features: JSON.stringify(features),
       status: "Available",
     },
@@ -63,6 +143,8 @@ export async function updateVehicle(id: string, formData: FormData) {
   const images = imagesStr.split(",").map(s => s.trim()).filter(s => s !== "");
   const features = featuresStr.split(",").map(s => s.trim()).filter(s => s !== "");
 
+  const processedImages = await processImageUrls(images);
+
   await prisma.vehicle.update({
     where: { id },
     data: {
@@ -76,7 +158,7 @@ export async function updateVehicle(id: string, formData: FormData) {
       bodyType,
       engineSize,
       location,
-      images: JSON.stringify(images),
+      images: JSON.stringify(processedImages),
       features: JSON.stringify(features),
       status,
     },

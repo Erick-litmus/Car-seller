@@ -42,7 +42,7 @@ export default function Navbar() {
           <div className="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center shadow-lg shadow-accent/20">
             <Car className="text-white w-6 h-6" />
           </div>
-          <span className="text-xl font-bold font-serif tracking-tight text-white">
+          <span className="text-lg font-bold font-serif tracking-tight text-white">
             ERICK <span className="text-accent">&</span> MUTUA
           </span>
         </Link>
@@ -93,7 +93,7 @@ export default function Navbar() {
                 <div className="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center">
                   <Car className="text-white w-6 h-6" />
                 </div>
-                <span className="text-xl font-bold font-serif text-white">ERICK & MUTUA</span>
+                <span className="text-lg font-bold font-serif text-white">ERICK & MUTUA</span>
               </Link>
               <button
                 className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white"
@@ -115,7 +115,7 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      "flex items-center gap-4 text-xl font-serif font-bold transition-all",
+                      "flex items-center gap-4 text-lg font-serif font-bold transition-all",
                       pathname === link.href ? "text-accent" : "text-white/60"
                     )}
                   >
@@ -130,7 +130,7 @@ export default function Navbar() {
               <Link
                 href="/vehicles"
                 onClick={() => setIsOpen(false)}
-                className="block w-full py-5 gold-gradient text-white text-center rounded-2xl font-bold text-lg shadow-xl shadow-accent/20"
+                className="block w-full py-4 gold-gradient text-white text-center rounded-2xl font-bold text-base shadow-xl shadow-accent/20"
               >
                 Sell Your Car
               </Link>
