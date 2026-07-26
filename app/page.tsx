@@ -68,7 +68,7 @@ export default async function Home() {
               { name: "SUVs", count: "45+", img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80" },
               { name: "Sedans", count: "32+", img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80" },
               { name: "Sports", count: "12+", img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80" },
-              { name: "Luxury", count: "28+", img: "https://images.unsplash.com/photo-1563720223185-11003d516905?auto=format&fit=crop&q=80" },
+              { name: "Luxury", count: "28+", img: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80" },
             ].map((cat, i) => (
               <Link href={`/vehicles?bodyType=${cat.name.slice(0, -1)}`} key={i} className="group relative aspect-[4/5] rounded-[40px] overflow-hidden shadow-lg">
                 <Image src={cat.img} alt={cat.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
