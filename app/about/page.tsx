@@ -1,8 +1,20 @@
 import React from "react";
+import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import { ShieldCheck, Target, Users, Award } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Learn about Erick & Mutua — Kenya's trusted car dealership founded on transparency, quality, and community. Meet the founders and discover our mission.",
+  openGraph: {
+    title: "About Erick & Mutua Cars",
+    description:
+      "Kenya's trusted car dealership founded on transparency, quality, and community.",
+  },
+};
 
 export default function AboutPage() {
   return (

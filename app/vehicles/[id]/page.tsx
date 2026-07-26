@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import VehicleGallery from "@/components/vehicles/VehicleGallery";
@@ -20,6 +21,55 @@ import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+// Dynamic SEO metadata for each vehicle
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+
+  const vehicle = await prisma.vehicle.findUnique({
+    where: { id },
+  });
+
+  if (!vehicle) {
+    return {
+      title: "Vehicle Not Found",
+    };
+  }
+
+  const images = JSON.parse(vehicle.images as string);
+  const firstImage = images[0] || "/hero-car.png";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://erickandmutua.com";
+  const title = `${vehicle.year} ${vehicle.make} ${vehicle.model} for Sale`;
+  const description = `Buy this ${vehicle.year} ${vehicle.make} ${vehicle.model} — ${vehicle.engineSize} ${vehicle.fuelType}, ${vehicle.transmission}, ${vehicle.mileage.toLocaleString()} km. Priced at KES ${(vehicle.price / 1000000).toFixed(1)}M. Located in ${vehicle.location}. Certified & inspected.`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title: `${title} | Erick & Mutua`,
+      description,
+      url: `${siteUrl}/vehicles/${id}`,
+      type: "website",
+      images: [
+        {
+          url: firstImage,
+          width: 1200,
+          height: 630,
+          alt: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [firstImage],
+    },
+    alternates: {
+      canonical: `${siteUrl}/vehicles/${id}`,
+    },
+  };
 }
 
 export default async function VehicleDetailPage({ params }: PageProps) {
@@ -51,8 +101,49 @@ export default async function VehicleDetailPage({ params }: PageProps) {
   const whatsappMessage = `Hi, I'm interested in the ${vehicle.year} ${vehicle.make} ${vehicle.model} priced at KES ${(vehicle.price / 1000000).toFixed(1)}M. Is it still available?`;
   const whatsappUrl = `https://wa.me/254706546644?text=${encodeURIComponent(whatsappMessage)}`;
 
+  // JSON-LD structured data for rich search results
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://erickandmutua.com";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+    description: `${vehicle.year} ${vehicle.make} ${vehicle.model} — ${vehicle.engineSize} ${vehicle.fuelType} engine, ${vehicle.transmission} transmission, ${vehicle.mileage.toLocaleString()} km mileage. Located in ${vehicle.location}.`,
+    image: vehicle.images,
+    brand: {
+      "@type": "Brand",
+      name: vehicle.make,
+    },
+    offers: {
+      "@type": "Offer",
+      price: vehicle.price,
+      priceCurrency: "KES",
+      availability: vehicle.status === "Available"
+        ? "https://schema.org/InStock"
+        : "https://schema.org/SoldOut",
+      seller: {
+        "@type": "Organization",
+        name: "Erick & Mutua Cars",
+        url: siteUrl,
+      },
+    },
+    vehicleConfiguration: vehicle.transmission,
+    fuelType: vehicle.fuelType,
+    mileageFromOdometer: {
+      "@type": "QuantitativeValue",
+      value: vehicle.mileage,
+      unitCode: "KMT",
+    },
+    modelDate: vehicle.year.toString(),
+    bodyType: vehicle.bodyType,
+  };
+
   return (
     <main className="flex-grow bg-brand-light">
+      {/* JSON-LD structured data for Google rich results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <div className="pt-24 pb-12 px-6">

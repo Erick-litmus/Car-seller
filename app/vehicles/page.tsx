@@ -1,8 +1,21 @@
 import React from "react";
+import Link from "next/link";
+import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import VehiclesLayout from "@/components/vehicles/VehiclesLayout";
 import prisma from "@/lib/prisma";
+
+export const metadata: Metadata = {
+  title: "Available Vehicles & Cars for Sale",
+  description:
+    "Browse our full inventory of certified pre-owned vehicles in Kenya. SUVs, sedans, sports cars, and luxury vehicles with transparent pricing and 150-point inspections.",
+  openGraph: {
+    title: "Available Vehicles & Cars for Sale | Erick & Mutua",
+    description:
+      "Browse our full inventory of certified pre-owned vehicles in Kenya.",
+  },
+};
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -56,9 +69,9 @@ export default async function VehiclesPage({ searchParams }: PageProps) {
         </div>
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex items-center gap-2 text-white/40 text-xs md:text-sm mb-4 uppercase tracking-[0.2em] font-bold">
-            <span>Home</span>
-            <div className="w-1 h-1 bg-white/20 rounded-full" />
+          <div className="flex items-center gap-3 text-white/40 text-xs md:text-sm mb-4 uppercase tracking-[0.2em] font-bold">
+            <Link href="/" className="hover:text-white transition-colors duration-300">Home</Link>
+            <div className="w-1.5 h-1.5 bg-accent/50 rounded-full" />
             <span className="text-accent">Inventory</span>
           </div>
           <h1 className="text-3xl md:text-6xl font-serif font-bold text-white mb-6">

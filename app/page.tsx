@@ -22,6 +22,35 @@ export default async function Home() {
 
   return (
     <main className="flex-grow bg-brand-light">
+      {/* JSON-LD Organization structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AutoDealer",
+            name: "Erick & Mutua Cars",
+            description:
+              "Kenya's premier used car dealership. Certified pre-owned vehicles with transparent pricing and expert consultancy.",
+            url: process.env.NEXT_PUBLIC_SITE_URL || "https://erickandmutua.com",
+            logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://erickandmutua.com"}/hero-car.png`,
+            telephone: "+254706546644",
+            email: "info@erickandmutua.com",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Nairobi",
+              addressCountry: "KE",
+            },
+            openingHoursSpecification: {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "08:00",
+              closes: "18:00",
+            },
+            sameAs: [],
+          }),
+        }}
+      />
       <Navbar />
       <Hero />
 

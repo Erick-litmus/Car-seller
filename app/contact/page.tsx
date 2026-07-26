@@ -1,8 +1,20 @@
 import React from "react";
+import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ContactForm from "@/components/contact/ContactForm";
 import { Clock, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Get in touch with Erick & Mutua. Call, email, or WhatsApp us for questions about vehicles, pricing, or to book a viewing. Located in Nairobi, Kenya.",
+  openGraph: {
+    title: "Contact Erick & Mutua Cars",
+    description:
+      "Reach out for questions about vehicles, pricing, or to book a viewing in Nairobi, Kenya.",
+  },
+};
 
 export default function ContactPage() {
   return (
