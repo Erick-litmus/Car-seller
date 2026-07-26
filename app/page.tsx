@@ -172,14 +172,14 @@ export default async function Home() {
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
             >
               <source
-                src="https://assets.mixkit.co/videos/preview/mixkit-driving-in-a-dark-tunnel-with-a-luxury-car-4334-large.mp4"
+                src="/hero-video.mp4"
                 type="video/mp4"
               />
             </video>
             <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent" />
             <div className="absolute bottom-12 left-12 right-12 p-8 bg-black/30 backdrop-blur-md rounded-[40px] border border-white/10">
               <Star className="text-accent w-8 h-8 mb-4 fill-accent" />
-              <p className="text-white text-xl font-serif italic italic leading-relaxed">
+              <p className="text-white text-xl font-serif italic leading-relaxed">
                 "Our mission is to provide more than just a car; we provide a lifestyle of technical perfection and unrivaled service."
               </p>
               <p className="text-accent font-bold mt-6 uppercase tracking-widest text-xs">— Erick & Mutua</p>
