@@ -31,7 +31,7 @@ export default async function Home() {
             "@type": "AutoDealer",
             name: "Erick & Mutua Cars",
             description:
-              "Kenya's premier used car dealership. Certified pre-owned vehicles with transparent pricing and expert consultancy.",
+              "Kenya's premier used car seller and dealership. Certified pre-owned vehicles with transparent pricing and expert consultancy.",
             url: process.env.NEXT_PUBLIC_SITE_URL || "https://erickandmutua.com",
             logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://erickandmutua.com"}/hero-car.png`,
             telephone: "+254706546644",
@@ -190,8 +190,8 @@ export default async function Home() {
               The Gold Standard
             </span>
             <h2 className="text-2xl md:text-4xl font-serif font-bold text-brand-dark mb-10 leading-tight">
-              Why We Are The <br />
-              Preferred Choice
+              Why We Are Kenya's <br />
+              Preferred Car Seller
             </h2>
             <div className="space-y-12">
               {[

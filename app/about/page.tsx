@@ -8,11 +8,11 @@ import { ShieldCheck, Target, Users, Award } from "lucide-react";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Erick & Mutua — Kenya's trusted car dealership founded on transparency, quality, and community. Meet the founders and discover our mission.",
+    "Learn about Erick & Mutua — Kenya's trusted car seller and dealership founded on transparency, quality, and community. Meet the founders and discover our mission.",
   openGraph: {
     title: "About Erick & Mutua Cars",
     description:
-      "Kenya's trusted car dealership founded on transparency, quality, and community.",
+      "Kenya's trusted car seller and dealership founded on transparency, quality, and community.",
   },
 };
 
@@ -29,8 +29,8 @@ export default function AboutPage() {
             Our Story
           </span>
           <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-8">
-            Redefining the <br />
-            Car Buying Experience
+            Your Trusted <br />
+            Car Seller in Kenya
           </h1>
           <p className="text-white/60 text-xl max-w-2xl leading-relaxed">
             Erick & Mutua was founded on the principle of transparency. We believe that buying a premium vehicle should be as enjoyable as driving one.

@@ -63,7 +63,7 @@ export default function Hero() {
               Luxury
             </h1>
             <p className="text-sm md:text-base text-white/70 mb-8 leading-relaxed max-w-md">
-              Discover a curated collection of premium used cars. Transparent pricing, technical excellence, and a seamless buying journey.
+              Kenya's premier used car seller. Discover a curated collection of premium vehicles. Transparent pricing, technical excellence, and a seamless buying journey.
             </p>
 
 
